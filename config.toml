@@ -1,0 +1,9 @@
+baseurl = "http://example.org/"
+title = "My New Hugo Site"
+languageCode = "en-us"
+
+pygmentsuseclasses = false
+
+PygmentsCodeFences = true
+
+pygmentsstyle = "fruity"

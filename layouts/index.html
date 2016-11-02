@@ -1,0 +1,18 @@
+<html>
+    <body>
+ {{ range .Data.Pages }}
+<article class="li">
+  <a href="{{ .Permalink }}" class="clearfix">
+      <h2 class="title">{{ .Title }}</h2> 
+  </a>
+    <div class="detail">
+      <time>{{ with .Site.Params.DateForm }}{{ $.Date.Format . }}{{ else }}{{ $.Date.Format "Mon, Jan 2, 2006" }}{{ end }}</time>
+      <div class="content">
+          {{.Content}}
+      </div>
+    </div> 
+</article>
+<hr>
+  {{end}}
+    </body>
+</html>
