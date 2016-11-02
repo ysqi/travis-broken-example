@@ -21,8 +21,8 @@ install:
     - sudo dpkg -i $PWD/work/hugo.deb
     - npm install npm -g
     - npm install bower -g
-    - npm insatll html-proofer -g
-    - npm insatll html-minifier -g
+    - "npm insatll html-proofer -g"
+    - "npm insatll html-minifier -g"
 script:
     - hugo version 
     - hugo
