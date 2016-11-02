@@ -27,7 +27,7 @@ install:
     #- npm insatll html-minifier -g
 script:
     - hugo version 
-    - hugo 
+    - hugo
 
-after_success
+after_success:
     - html-minifier --collapse-whitespace --file-ext html --input-dir $PWD/public --output-dir $PWD/public
