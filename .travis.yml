@@ -1,6 +1,12 @@
 sudo: required
 dist: trusty
 
+# safelist
+branches:
+  only:
+  - master
+  - stable
+
 language: node_js
 
 node_js:
@@ -21,6 +27,7 @@ install:
     - sudo dpkg -i $PWD/work/hugo.deb
     - git clone git://github.com/kangax/html-minifier.git $PWD/work/minifier/
     - npm link $PWD/work/minifier/ 
+    #- npm install -g grunt-cli
     #- npm install npm -g
     #- npm install bower -g
     #- npm insatll html-proofer -g
@@ -28,6 +35,17 @@ install:
 script:
     - hugo version 
     - hugo
+after_script: 
+    - html-minifier --collapse-whitespace --file-ext html --input-dir ./ --output-dir ./
+    - cd ./public
+    - git init
+    - git config user.name ${Git_User_Name} 
+    - git config user.email ${Git_User_Email}
+    - git add .
+    - git commit -m "[ci skip] deploy from ysqi"
+    - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
 
-after_success:
-    - html-minifier --collapse-whitespace --file-ext html --input-dir $PWD/public --output-dir $PWD/public
+env:
+   - GH_REF="github.com/ysqi/travis-broken-example" 
+   - Git_User_Name="ysqi"
+   - Git_User_Email="devysq@gmail.com"
