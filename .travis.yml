@@ -1,51 +1,43 @@
 sudo: required
 dist: trusty
-
-# safelist
 branches:
   only:
   - master
   - stable
-
 language: node_js
-
 node_js:
-    - "node"
-
+- node
 before_install:
-    - sudo apt-get update
-    - sudo apt-get -y install build-essential
-    - sudo apt-get -y install git
-    - sudo apt-get -y install python3-pygments
-    - sudo apt-get -y install ruby
-    - sudo apt-get -y install wget
-    #- sudo apt-get -y install yui-compressor
-
+#- sudo apt-get update
+- sudo apt-get -y install build-essential
+- sudo apt-get -y install git
+- sudo apt-get -y install python3-pygments
+- sudo apt-get -y install ruby
+- sudo apt-get -y install wget
 install:
-    - mkdir work
-    - wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}-64bit.deb -O $PWD/work/hugo.deb
-    - sudo dpkg -i $PWD/work/hugo.deb
-    - git clone git://github.com/kangax/html-minifier.git $PWD/work/minifier/
-    - npm link $PWD/work/minifier/ 
-    #- npm install -g grunt-cli
-    #- npm install npm -g
-    #- npm install bower -g
-    #- npm insatll html-proofer -g
-    #- npm insatll html-minifier -g
+- mkdir work
+- wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}-64bit.deb
+  -O $PWD/work/hugo.deb
+- sudo dpkg -i $PWD/work/hugo.deb
+- git clone git://github.com/kangax/html-minifier.git $PWD/work/minifier/
+- npm link $PWD/work/minifier/
 script:
-    - hugo version 
-    - hugo
-after_script: 
-    - html-minifier --collapse-whitespace --file-ext html --input-dir ./ --output-dir ./
-    - cd ./public
-    - git init
-    - git config user.name ${Git_User_Name} 
-    - git config user.email ${Git_User_Email}
-    - git add .
-    - git commit -m "[ci skip] deploy from ysqi"
-    - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
-
+- hugo version
+- hugo
+after_script:
+- html-minifier --collapse-whitespace --file-ext html --input-dir ./ --output-dir
+  ./
+after_success:
+- cd ./public
+- git init
+- git config user.name ${Git_User_Name}
+- git config user.email ${Git_User_Email}
+- git add .
+- git commit -m "[ci skip] deploy from ysqi"
+- git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" origin gh-pages
 env:
-   - GH_REF="github.com/ysqi/travis-broken-example" 
-   - Git_User_Name="ysqi"
-   - Git_User_Email="devysq@gmail.com"
+  global:
+  - GH_REF="github.com/ysqi/travis-broken-example"
+  - Git_User_Name="ysqi"
+  - Git_User_Email="devysq@gmail.com"
+  - secure: l3rnVBQeAlv1rJCr/gK3sBSojWMo8to3EvOzhDRPwT6LsEWcswhPIvv0lFNb3Gsf3nwfTUOvGJyso6XGYYV6VIQ+osm5Jusyz6ahBJeGn89/TBkP11kSEdohoJTD7lRoQpTyQhJEjZD567I00ShgFJNMQN7HRcFdcXoWaAMwupdIHWjkqbjfVSFQU3Q/wxWeo+Dq3bUbtkEWvfzABMEKZGAjuoRq2lP7RNy9WHv2SwTQuTGUJEQ4BVw84vKDowOIK71RcdFttjrdu9GJ5xAjAAm3jK+maSgwpf8AhdRtZkO7WnUe0YU70K0iHVI8PYsuCJpe4Azu4avEPNnFrvqcVeVIk2InMtAdXJ16crGMd/VHchyz0Uuydk89qXVufwjfyCdLsITAxusPjaukNQWinvZMCTigGc10uqRWmC/0ZaMv93i54nGMhMe7GF4aGV75fNmXvpQBKew83ALQz408jk6UdxAqcpA2Sn3vV5hKyBbPc1gg6Jn8w//pAa/uR38VNg3q35qyn1uOYoZuAbCJCSQPP/jWrkl1SvhH0HWSPBbHsT8P6YKvkaB9y0yEERYQERgQPvQ2IPMheIHz1T2H2E0/Ej20bhZpFOP5NmXc/g12LYqJakvDFZ8r+DTdCLwFtht6XNPsu/6L91VtRl10tdNtFmL2kpGrpkLZryskXxQ=
