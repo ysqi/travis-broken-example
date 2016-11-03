@@ -9,12 +9,12 @@ if [ ! -d "$SOURCE_DIR" ]; then
   exit 1
 fi
  
-REPO=$(git config remote.origin.url)
+REPO= $GH_REF
  
 if [ -n "$TRAVIS_BUILD_ID" ]; then 
 
   echo DEPLOY_BRANCH: $DEPLOY_BRANCH
-  echo ENCRYPTION_LABEL: $ENCRYPTION_LABEL
+  # echo ENCRYPTION_LABEL: $ENCRYPTION_LABEL
   echo GIT_NAME: $GIT_NAME
   echo GIT_EMAIL: $GIT_EMAIL
   if [ "$TRAVIS_BRANCH" != "$DEPLOY_BRANCH" ]; then
@@ -27,8 +27,8 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
     else
       # switch both git and https protocols as we don't know which travis
       # is using today (it changed!)
-      REPO=${REPO/git:\/\/github.com\//git@github.com:}
-      REPO=${REPO/https:\/\/github.com\//git@github.com:}
+      # REPO=${REPO/git:\/\/github.com\//git@github.com:}
+      # REPO=${REPO/https:\/\/github.com\//git@github.com:}
       
     #   chmod 600 $SSH_KEY
     #   eval `ssh-agent -s`
