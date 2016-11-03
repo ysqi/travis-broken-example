@@ -27,7 +27,7 @@ after_script:
 - html-minifier --collapse-whitespace --file-ext html --input-dir ./ --output-dir
   ./
 after_success:
-- ls -al ./public
+- ls -al ./public 
 #- git remote add origin https://${GH_REF}
 #- git config user.name ${Git_User_Name}
 #- git config user.email ${Git_User_Email}
@@ -38,7 +38,7 @@ after_success:
 
 env:
   global:
-  - GH_REF="github.com/ysqi/travis-broken-example"
+  - GH_REF="github.com/ysqi/travis-broken-example.git"
   - GIT_NAME="ysqi"
   - GIT_EMAIL="devysq@gmail.com"
   - SOURCE_DIR="public"
