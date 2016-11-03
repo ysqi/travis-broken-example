@@ -21,23 +21,26 @@ install:
 - sudo dpkg -i $PWD/work/hugo.deb
 - git clone git://github.com/kangax/html-minifier.git $PWD/work/minifier/
 - npm link $PWD/work/minifier/
-script:
-- hugo version
+script: 
 - hugo
 after_script:
 - html-minifier --collapse-whitespace --file-ext html --input-dir ./ --output-dir
   ./
 after_success:
-- cd ./public
-- git init
-- git config user.name ${Git_User_Name}
-- git config user.email ${Git_User_Email}
-- git add .
-- git commit -m "[ci skip] deploy from ysqi"
-- git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" origin gh-pages
+- ls -al ./public
+#- git remote add origin https://${GH_REF}
+#- git config user.name ${Git_User_Name}
+#- git config user.email ${Git_User_Email}
+#- git add .
+#- git commit -m "[ci skip] deploy from ysqi"
+#- git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" origin gh-pages
+- ./scripts/deploy.sh
+
 env:
   global:
   - GH_REF="github.com/ysqi/travis-broken-example"
-  - Git_User_Name="ysqi"
-  - Git_User_Email="devysq@gmail.com"
+  - GIT_NAME="ysqi"
+  - GIT_EMAIL="devysq@gmail.com"
+  - SOURCE_DIR="public"
+  - DEPLOY_BRANCH="master"
   - secure: l3rnVBQeAlv1rJCr/gK3sBSojWMo8to3EvOzhDRPwT6LsEWcswhPIvv0lFNb3Gsf3nwfTUOvGJyso6XGYYV6VIQ+osm5Jusyz6ahBJeGn89/TBkP11kSEdohoJTD7lRoQpTyQhJEjZD567I00ShgFJNMQN7HRcFdcXoWaAMwupdIHWjkqbjfVSFQU3Q/wxWeo+Dq3bUbtkEWvfzABMEKZGAjuoRq2lP7RNy9WHv2SwTQuTGUJEQ4BVw84vKDowOIK71RcdFttjrdu9GJ5xAjAAm3jK+maSgwpf8AhdRtZkO7WnUe0YU70K0iHVI8PYsuCJpe4Azu4avEPNnFrvqcVeVIk2InMtAdXJ16crGMd/VHchyz0Uuydk89qXVufwjfyCdLsITAxusPjaukNQWinvZMCTigGc10uqRWmC/0ZaMv93i54nGMhMe7GF4aGV75fNmXvpQBKew83ALQz408jk6UdxAqcpA2Sn3vV5hKyBbPc1gg6Jn8w//pAa/uR38VNg3q35qyn1uOYoZuAbCJCSQPP/jWrkl1SvhH0HWSPBbHsT8P6YKvkaB9y0yEERYQERgQPvQ2IPMheIHz1T2H2E0/Ej20bhZpFOP5NmXc/g12LYqJakvDFZ8r+DTdCLwFtht6XNPsu/6L91VtRl10tdNtFmL2kpGrpkLZryskXxQ=
