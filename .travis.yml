@@ -36,7 +36,7 @@ after_success:
 
 env:
   global:
-  - GH_REF="github.com/ysqi/travis-broken-example.git"
+  - GH_REF="https://github.com/ysqi/travis-broken-example.git"
   - GIT_NAME="ysqi"
   - GIT_EMAIL="devysq@gmail.com"
   - SOURCE_DIR="public"
