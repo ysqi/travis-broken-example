@@ -9,7 +9,7 @@ if [ ! -d "$SOURCE_DIR" ]; then
   exit 1
 fi
  
-REPO= $GH_REF
+REPO=$GH_REF
  
 if [ -n "$TRAVIS_BUILD_ID" ]; then 
 
