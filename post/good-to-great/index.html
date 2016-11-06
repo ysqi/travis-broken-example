@@ -1,11 +1,1 @@
-<html><body><a href="http://example.org/post/good-to-great/" class="clearfix"><h2 class="title">good to great</h2></a><div class="detail"><time>Wed, Nov 2, 2016</time><div class="content"><p>I read <strong>Good to Great in January 2016</strong>. An awesome read sharing detailed analysis on how good companies became great.</p><div class="highlight" style="background:#111"><pre style="line-height:125%"><span></span><span style="color:#fff">&lt;</span><span style="color:#fb660a;font-weight:700">section</span> <span style="color:#ff0086;font-weight:700">id</span><span style="color:#fff">=</span><span style="color:#0086d2">&quot;main&quot;</span><span style="color:#fff">&gt;</span>
-  <span style="color:#fff">&lt;</span><span style="color:#fb660a;font-weight:700">div</span><span style="color:#fff">&gt;</span>
-   <span style="color:#fff">&lt;</span><span style="color:#fb660a;font-weight:700">h1</span> <span style="color:#ff0086;font-weight:700">id</span><span style="color:#fff">=</span><span style="color:#0086d2">&quot;title&quot;</span><span style="color:#fff">&gt;</span>{{ .Title }}<span style="color:#fff">&lt;/</span><span style="color:#fb660a;font-weight:700">h1</span><span style="color:#fff">&gt;</span>
-        <span style="color:#fff">&lt;</span><span style="color:#fb660a;font-weight:700">ul</span> <span style="color:#ff0086;font-weight:700">id</span><span style="color:#fff">=</span><span style="color:#0086d2">&quot;list&quot;</span><span style="color:#fff">&gt;</span>
-            {{ range .Data.Pages }}
-                {{ .Render &quot;li&quot;}}
-            {{ end }}
-        <span style="color:#fff">&lt;/</span><span style="color:#fb660a;font-weight:700">ul</span><span style="color:#fff">&gt;</span>
-  <span style="color:#fff">&lt;/</span><span style="color:#fb660a;font-weight:700">div</span><span style="color:#fff">&gt;</span>
-<span style="color:#fff">&lt;/</span><span style="color:#fb660a;font-weight:700">section</span><span style="color:#fff">&gt;</span>
-</pre></div></div></div></body></html>
+<html><body><a href="http://example.org/post/good-to-great/" class="clearfix"><h2 class="title">good to great</h2></a><div class="detail"><time>Wed, Nov 2, 2016</time><div class="content"><p>I read <strong>Good to Great in January 2016</strong>. An awesome read sharing detailed analysis on how good companies became great.</p><section id="main"><div><h1 id="title">{{ .Title }}</h1><ul id="list">{{ range .Data.Pages }} {{ .Render "li"}} {{ end }}</ul></div></section></div></div></body></html>

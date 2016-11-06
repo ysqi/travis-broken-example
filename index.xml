@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>http://example.org/index.xml</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Nov 2016 07:58:01 +0800</lastBuildDate>
+    <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>goodboy</title>
+      <link>http://example.org/post/goodboy/</link>
+      <pubDate>Sun, 06 Nov 2016 07:58:01 +0800</pubDate>
+      
+      <guid>http://example.org/post/goodboy/</guid>
+      <description>&lt;p&gt;Wiring&amp;hellip;&lt;/p&gt;
+import fmt 
+
+func main(){
+    fmt.Println(&#34;Hello Gopher!&#34;)
+}
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Good Boy!&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>study golang</title>
+      <link>http://example.org/post/study-golang/</link>
+      <pubDate>Wed, 02 Nov 2016 21:01:21 +0800</pubDate>
+      
+      <guid>http://example.org/post/study-golang/</guid>
+      <description>
+
+&lt;p&gt;你应该去询问 Ysqi ,他写的一段代码&lt;/p&gt;
+import fmt 
+
+func main(){
+    fmt.Println(&#34;Hello Gopher!&#34;)
+}
+
+&lt;h3 id=&#34;beego&#34;&gt;Beego&lt;/h3&gt;
+
+// show error string as simple text message.
+// if error string is empty, show 503 or 500 error as default.
+func exception(errCode string, ctx *context.Context) {
+	atoi := func(code string) int {
+		v, err := strconv.Atoi(code)
+		if err == nil {
+			return v
+		}
+		if ctx.Output.Status == 0 {
+			return 503
+		}
+		return ctx.Output.Status
+	}
+
+	for _, ec := range []string{errCode, &#34;503&#34;, &#34;500&#34;} {
+		if h, ok := ErrorMaps[ec]; ok {
+			executeError(h, ctx, atoi(ec))
+			return
+		}
+	}
+	//if 50x error has been removed from errorMap
+	ctx.ResponseWriter.WriteHeader(atoi(errCode))
+	ctx.WriteString(errCode)
+}
+</description>
+    </item>
+    
+    <item>
+      <title>good to great</title>
+      <link>http://example.org/post/good-to-great/</link>
+      <pubDate>Wed, 02 Nov 2016 20:42:55 +0800</pubDate>
+      
+      <guid>http://example.org/post/good-to-great/</guid>
+      <description>&lt;p&gt;I read &lt;strong&gt;Good to Great in January 2016&lt;/strong&gt;. An awesome read sharing detailed analysis on how good companies became great.&lt;/p&gt;
+&lt;section id=&#34;main&#34;&gt;
+  &lt;div&gt;
+   &lt;h1 id=&#34;title&#34;&gt;{{ .Title }}&lt;/h1&gt;
+        &lt;ul id=&#34;list&#34;&gt;
+            {{ range .Data.Pages }}
+                {{ .Render &#34;li&#34;}}
+            {{ end }}
+        &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
